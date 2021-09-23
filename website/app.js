@@ -67,7 +67,7 @@ const updateApp = async () => {
   const request = await fetch('/all');
   try {
     const allData = await request.json()
-    document.getElementById('date').innerHTML = allData.date;
+    document.getElementById('date').innerHTML = allData.date; //pulling in unique elements to update
     document.getElementById('temp').innerHTML = allData.temp;
     document.getElementById('content').innerHTML = allData.content;
   }
