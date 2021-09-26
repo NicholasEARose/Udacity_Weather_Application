@@ -13,13 +13,13 @@ document.getElementById('generate_button').addEventListener('click', performActi
 function performAction(event) { //takes event param and executes the getTheWeather function
   event.preventDefault(); //prevent it from submitting if cancellable/necessary for HTML forms/submits...more info https://www.w3schools.com/jsref/event_preventdefault.asp
   const newZip = document.getElementById('zip').value; //var for the input value in the text field within the form...in this case the zip... more info here https://www.w3schools.com/jsref/prop_text_value.asp
-  const content = document.getElementById('feelings').value; //same as above but for the feelings/content input
+  const log = document.getElementById('feelings').value; //same as above but for the feelings/content input
   //this is from this Udacity FE lesson: 'Chaining Proimses'
   getTheWeather(baseURL, newZip, apiKey) //runs Fetch request
     .then(function (inputData) {//then run function using user input data
       //"Inside .then() we could call another async function to make a POST request to store this data in our app. Assuming a POST route has been setup on the server side to add data it received to the app endpoint, we could simply call the function we have been using to create POST requests on the client side and pass it the POST route url and the data we want to save to our app. The only tricky part (which can also be fun!), is that we need to use the returned data, and data that we retrieve from a DOM element to create the structure for our POST request."
       //"which can also be fun"
-      postData('/add', { date: newDate, temp: inputData.main.temp, content })//postData user input data from previous Fetch using some dot notation and which was, indeed, pretty fun
+      postData('/add', { date: newDate, temp: inputData.main.temp, log })//postData user input data from previous Fetch using some dot notation and which was, indeed, pretty fun
     }).then(function () { //then run the thing that updates the app
       //more info here: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises
       updateApp()//this updates the app in the DOM
@@ -47,9 +47,9 @@ const postData = async (url = '', data = {}) => {
       "Content-Type": "application/json;charset=UTF-8"
     },
     body: JSON.stringify({ //converts this obejct to a JSON string more info...https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify
-      date: data.date,
+      date: data.date, //grabbing the values/data to convert to JSON
       temp: data.temp,
-      content: data.content
+      log: data.log
     })
   })
   try {
@@ -67,9 +67,9 @@ const updateApp = async () => {
   const request = await fetch('/all');
   try {
     const allData = await request.json()
-    document.getElementById('date').innerHTML = allData.date; //pulling in unique elements to update
+    document.getElementById('date').innerHTML = allData.date; //pulling in unique element/value and injecting it into the html
     document.getElementById('temp').innerHTML = allData.temp;
-    document.getElementById('content').innerHTML = allData.content;
+    document.getElementById('log').innerHTML = allData.log;
   }
   catch (error) {
     console.log("error", error);

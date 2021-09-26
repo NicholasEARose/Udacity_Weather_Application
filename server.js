@@ -39,7 +39,7 @@ app.post('/add', addInfo);
 function addInfo(req, res) {
   projectData['date'] = req.body.date;
   projectData['temp'] = req.body.temp;
-  projectData['content'] = req.body.content;
+  projectData['log'] = req.body.log;
   res.send(projectData);
 }
 
