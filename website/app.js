@@ -1,11 +1,11 @@
-//from this Udacity lesson 'Async Fetch with Web APIs Demo' with some syntax changes
+//from Udacity lesson 'Async Fetch with Web APIs Demo' with some light syntax tweaks for unique vars
 //set global variables
-const form = document.querySelector('.app__form'); //set up global container variable for app itself
-const baseURL = 'http://api.openweathermap.org/data/2.5/weather?zip='; //URL variable for requests
-const apiKey = '&appid=4d770665982bf5c91e5c5e2cca465603&units=imperial';// variable for my personal api key
+const form = document.querySelector('.app__form'); //set up global container variable for app
+const baseURL = 'http://api.openweathermap.org/data/2.5/weather?zip='; //URL var for API requests
+const apiKey = '&appid=4d770665982bf5c91e5c5e2cca465603&units=imperial';// var for my personal api key
 
-let date = new Date(); //JS that spits out date and puts it in this var... more info here https://www.w3schools.com/js/js_dates.asp
-let newDate = date.getMonth() + '.' + date.getDate() + '.' + date.getFullYear(); //variable for month/date/year in log...more here https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getMonth
+let date = new Date(); //JS method that spits out date and puts it in this var... more info here https://www.w3schools.com/js/js_dates.asp
+let newDate = date.getMonth() + '.' + date.getDate() + '.' + date.getFullYear(); //var for month/date/year in log...more here https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getMonth
 
 document.getElementById('generate_button').addEventListener('click', performAction); //this grabs the HTML button element/executes a function on button click defined below
 
@@ -14,8 +14,8 @@ function performAction(event) { //takes event param and executes the getTheWeath
   event.preventDefault(); //prevent it from submitting if cancellable/necessary for HTML forms/submits...more info https://www.w3schools.com/jsref/event_preventdefault.asp
   const newZip = document.getElementById('zip').value; //var for the input value in the text field within the form...in this case the zip... more info here https://www.w3schools.com/jsref/prop_text_value.asp
   const log = document.getElementById('feelings').value; //same as above but for the feelings/content input
-  //this is from this Udacity FE lesson: 'Chaining Proimses'
-  getTheWeather(baseURL, newZip, apiKey) //runs Fetch request
+  //this is from this Udacity FE lesson: 'Chaining Proimses' where then() is first introduced.
+  getTheWeather(baseURL, newZip, apiKey) //fetch request
     .then(function (inputData) {//then run function using user input data
       //"Inside .then() we could call another async function to make a POST request to store this data in our app. Assuming a POST route has been setup on the server side to add data it received to the app endpoint, we could simply call the function we have been using to create POST requests on the client side and pass it the POST route url and the data we want to save to our app. The only tricky part (which can also be fun!), is that we need to use the returned data, and data that we retrieve from a DOM element to create the structure for our POST request."
       //"which can also be fun"
