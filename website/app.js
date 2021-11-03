@@ -1,8 +1,8 @@
 //from Udacity lesson 'Async Fetch with Web APIs Demo' with some light syntax tweaks for unique vars
 //set global variables
 const form = document.querySelector('.app__form'); //set up global container variable for app
-const baseURL = 'http://api.openweathermap.org/data/2.5/weather?zip='; //URL var for API requests
-const apiKey = '&appid=4d770665982bf5c91e5c5e2cca465603&units=imperial';// var for my personal api key
+const baseURL = ''; //URL var for API requests
+const apiKey = '';// var for my personal api key MUST GENERATE KEY
 
 let date = new Date(); //JS method that spits out date and puts it in this var... more info here https://www.w3schools.com/js/js_dates.asp
 let newDate = date.getMonth() + '.' + date.getDate() + '.' + date.getFullYear(); //var for month/date/year in log...more here https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getMonth
